@@ -3,5 +3,5 @@
 
 <p>Users list:</p>
 <% @users.each do |user| %>
-<p>User: <%= link_to user.name, users_path(user) %></p>
+<p>User: <%= link_to user.name, user_path(user) %></p>
 <% end %>
