@@ -1,0 +1,15 @@
+<% unless @posts.nil? %>
+  <% @posts.each do |post| %>
+    <p>
+      <tr>
+        <td><%= post.title %></td>
+        <td><%= post.content %></td>
+        <td><%= image_tag(image_post_path(post)) %></td>
+        <td><%= link_to "Edit", edit_post_path(post), remote: true %></td>
+      </tr>
+    </p>
+  <% end %>
+<% else %>
+  <p>There are no posts..</p>
+<% end %>
+<p><%= link_to "New post", new_post_path %></p>

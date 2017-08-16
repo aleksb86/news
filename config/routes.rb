@@ -3,6 +3,12 @@ News::Application.routes.draw do
   devise_for :users
   resources :users
 
+  resources :posts do
+    get :image, on: :member
+  end
+
+  match '/uploads/grid/user/image/:id/:filename' => 'gridfs#image'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
