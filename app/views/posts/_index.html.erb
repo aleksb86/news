@@ -4,7 +4,7 @@
       <tr>
         <td><%= post.title %></td>
         <td><%= post.content %></td>
-        <td><%= image_tag(image_post_path(post)) %></td>
+        <td><%= image_tag(image_post_path(post), :width => 50, :height => 50) %></td>
         <td><%= link_to "Edit", edit_post_path(post), remote: true %></td>
       </tr>
     </p>

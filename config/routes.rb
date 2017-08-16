@@ -7,7 +7,7 @@ News::Application.routes.draw do
     get :image, on: :member
   end
 
-  match '/uploads/grid/user/image/:id/:filename' => 'gridfs#image'
+  # match '/uploads/grid/user/image/:id/:filename' => 'gridfs#image'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
