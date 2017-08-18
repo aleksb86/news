@@ -4,8 +4,16 @@ News::Application.routes.draw do
   resources :users
 
   resources :posts do
-    get :image, on: :member
+    resources :attachments, only: [:show]
+    #  collection do
+    #   get :attachment, on: :member
+    # end #/posts/:post_id/attachment?num=i
+    # resources :attachment do
+    #   get :photo, on: :member
+    # end
   end
+
+  resources :attachments, only: [:show]
 
   # match '/uploads/grid/user/image/:id/:filename' => 'gridfs#image'
 

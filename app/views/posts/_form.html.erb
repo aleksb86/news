@@ -11,6 +11,10 @@
     <%= f.label :image, class: "control-label" %>
     <%= f.file_field :image, class: "form-control" %>
   </div>
-    <%= f.submit class: "btn btn-primary" %>
-    <%= link_to "Cancel", "#", class: "btn", data: {dismiss: "modal"} %>
+  <div class="form-group">
+    <%= f.label :attachments, class: "control-label" %>
+    <%= f.file_field :attachments, class: "form-control", multiple: "multiple" %>
+  </div>
+  <%= f.submit class: "btn btn-primary" %>
+  <%= link_to "Cancel", "#", class: "btn", data: {dismiss: "modal"} %>
 <% end %>

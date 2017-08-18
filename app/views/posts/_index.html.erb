@@ -1,12 +1,30 @@
 <% unless @posts.nil? %>
   <% @posts.each do |post| %>
     <p>
-      <tr>
-        <td><%= post.title %></td>
-        <td><%= post.content %></td>
-        <td><%= image_tag(image_post_path(post), :width => 50, :height => 50) %></td>
-        <td><%= link_to "Edit", edit_post_path(post), remote: true %></td>
-      </tr>
+      <table class="table-bordered">
+        <tr>
+          <th>title</th>
+          <th>text</th>
+          <th>id</th>
+        </tr>
+        <tr>
+          <td><%= post.title %></td>
+          <td><%= post.content %></td>
+          <td><%= post.id %></td>
+          <td><%= link_to "Edit", edit_post_path(post), remote: true %></td>
+        </tr>
+      </table>
+        <% unless post.attachments.nil? %>
+          <% post.attachments.each do |attachment| %>
+            <ul>
+              <li>
+                <p><%= image_tag(attachment_path(attachment.id), :width => 50, :height => 50) %></p>
+              </li>
+            </ul>
+          <% end %>
+        <% else %>
+          <p>There are no attachments..</p>
+        <% end %>
     </p>
   <% end %>
 <% else %>

@@ -4,12 +4,9 @@ class Post
   field :title, type: String
   field :content, type: String
   field :image
-  # TODO
-  # embeds_many :images, :class_name => 'Image'
-  # accepts_nested_attributes_for :images, :allow_destroy => true
-
+  # Before 'has_many' its 'embeds_many' have tested.
+  # No way found to use 'embeds_many' with multiple ImageUploader instances.
+  has_many :attachments
 
   mount_uploader :image, ImageUploader
-
-  # accepts_nested_attributes_for :image, :allow_destroy => true
 end
