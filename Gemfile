@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 gem 'rails', '3.2.13'
+# gem 'rails', '4.0.0'
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
@@ -25,3 +26,7 @@ gem "mini_magick"
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 gem 'nested_form'
 gem 'strong_parameters'
+gem 'remotipart', '~> 1.3', '>= 1.3.1'
+gem "jquery-fileupload-rails"
+
+#//= require jquery-fileupload/basic
