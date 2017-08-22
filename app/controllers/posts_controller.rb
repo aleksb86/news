@@ -29,7 +29,7 @@ class PostsController < ApplicationController
           format.html #{ redirect_to @post, :layout => !request.xhr? }
           # format.js { render :js => @post }#, :status => :created,
             # :location => @post, :layout => !request.xhr? }
-          format.js #{ redirect_to "home/index" }#, :status => :created,
+          format.js { redirect_to "/posts.js" }#, :status => :created,
             # :location => @post, :layout => !request.xhr? }
           # format.json { render json: @post, status: :created }
         else
@@ -79,12 +79,13 @@ class PostsController < ApplicationController
 
   def destroy
     post = Post.find(params[:id])
-    post.destroy
-
-    respond_to do |format|
-      format.html { redirect_to "/" }
-      format.json { head :no_content }
-      format.js   { render :layout => false }
+    if post.destroy
+      @posts = Post.all
+      respond_to do |format|
+        format.html
+        format.json
+        format.js { render "posts/index" }
+      end
     end
   end
 
