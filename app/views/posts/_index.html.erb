@@ -14,12 +14,12 @@
           <td><%= post.content %></td>
           <td><%= post.id %></td>
           <td>
-            <% unless post.attachments.nil? %>
+            <% if post.attachments.any? %>
               <% post.attachments.each do |attachment| %>
-                <%= image_tag(attachment_path(attachment.id), :width => 50, :height => 50) %>
+                <%= image_tag(attachment_path(attachment.id, thumb: true)) %>
               <% end %>
             <% else %>
-              There are no attachments..
+              <p>There are no attachments..</p>
             <% end %>
           </td>
           <td>

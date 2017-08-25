@@ -1,6 +1,6 @@
 class Attachment
   include Mongoid::Document
-  # field :name, type: String
+  include Mongoid::Timestamps
   field :photo
   mount_uploader :photo, ImageUploader
   belongs_to :post

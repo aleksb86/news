@@ -13,7 +13,9 @@ News::Application.routes.draw do
     # end
   end
 
-  resources :attachments, only: [:show]
+  resources :attachments, except: [:index, :new, :create, :edit, :update]
+  # get "attachments/:id", to: "attachments#show"
+  # delete "attachments/:id", to: "attachments#destroy"
 
   # match '/uploads/grid/user/image/:id/:filename' => 'gridfs#image'
 

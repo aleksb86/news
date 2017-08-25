@@ -55,6 +55,17 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update_attributes(posts_params)
+
+      unless params[:post][:attachments].nil?
+        @post.attachments += params[:post][:attachments].map do |photo|
+          attachment = Attachment.new
+          attachment.photo = photo
+          attachment.post_id = @post.id
+          attachment.save
+          attachment
+        end
+      end
+
       @posts = Post.all
       respond_to do |format|
         format.html
