@@ -1,3 +1,7 @@
+<%= form_tag(posts_path, :method => "get", remote: true, id: "search-form", class: "form-inline") do %>
+  <%= text_field_tag :search, params[:search], placeholder: "Search for posts..", class: "form-control" %>
+  <%= submit_tag "Go!", :name => nil, class: "btn btn-default" %>
+<% end %>
 <h1>Home#index</h1>
 <div id="alert_placeholder"></div>
 <p>Find me in app/views/home/index.html.erb</p>
@@ -13,3 +17,4 @@
 <div class="new-post"></div>
 <p><%= link_to "Create post", new_post_path, remote: true, class: "btn btn-primary" %></p>
 <div id="post-modal" class="modal fade"></div>
+<div id="FoundPosts" class="modal fade"></div>

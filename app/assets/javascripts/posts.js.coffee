@@ -5,20 +5,34 @@ $ ->
   closeModal = (id) ->
     $(id).modal("hide")
 
-  succeeded = ->
-    console.log 'ajax send!'
+  succeeded = (x, y='', z='', w='') ->
+    console.log "response: #{x}, status: #{y}, xhr: #{z}, e: #{w}"
 
-  $("#post-modal")
+  $(document.body)
     # .bind "ajax:beforeSend", '#new_post', null
     # .bind "ajax:complete", '#new_post', (xhr, status) ->
     #   null
-    .bind "ajax:success", (response, status, xhr) ->
-      closeModal("#post-modal")
+    .on "ajax:success", "#new_post", (response, status, xhr) ->
+      closeModal "#post-modal"
+      succeeded 'hi from #new_post..'
+      succeeded response, status, xhr
+
+    .on "ajax:success", "#edit-post", (response, status, xhr) ->
+      closeModal " "
+      succeeded 'hi from #edit-post..'
+      succeeded response, status, xhr
+
+    .on "ajax:success", ".delete-attachment", (response, status, xhr) ->
+      succeeded 'hi from delete-attachment..'
+      succeeded response, status, xhr
+
+  # $("a[data-remote]").on "ajax:success", (e, data, status, xhr) ->
+  #   succeeded e, data, status, xhr
+
 #     .bind "ajax:error", '#new_post', (response, status, xhr) ->
 #       null
-  # $("#attachments-list")
-  #   # .bind "ajax:beforeSend", '#new_post', null
-  #   # .bind "ajax:complete", '#new_post', (xhr, status) ->
-  #   #   null
-  #   .bind "ajax:success", (response, status, xhr) ->
-  #     succeeded()
+
+  # $(document.body)
+  #   .on "ajax:success", ".delete-attachment", (response, status, xhr) ->
+  #     succeeded 'hi from body..'
+  #     succeeded response, status, xhr

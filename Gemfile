@@ -27,3 +27,5 @@ gem 'nested_form'
 gem 'strong_parameters'
 gem 'remotipart', '~> 1.3', '>= 1.3.1'
 # gem "jquery-fileupload-rails"
+gem 'pry-rails'
+gem 'mongoid-elasticsearch'

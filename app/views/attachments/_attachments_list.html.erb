@@ -1,0 +1,13 @@
+<% if @post.attachments.any? %>
+  <% @post.attachments.each do |attachment| %>
+    <p>
+      <%= image_tag(attachment_path(attachment.id, thumb: true)) %>
+      <%= link_to "Delete", post_attachment_path(post_id: @post.id,
+        id: attachment),
+        remote: true,
+        method: :delete,
+        data: {confirm: "Are you sure?"},
+        class: "delete-attachment" %>
+    </p>
+  <% end %>
+<% end %>

@@ -23,10 +23,11 @@ class AttachmentsController < ApplicationController
   def destroy
     attachment = Attachment.find(params[:id])
     if attachment.destroy
-      @posts = Post.all
+      @post = Post.find(params[:post_id])
+      @post.attachments = Attachment.where(post_id: @post.id)
       respond_to do |format|
         format.html
-        format.js { render nothing: true }
+        format.js #{ render "attachments/attachments_list" }
       end
     end
   end

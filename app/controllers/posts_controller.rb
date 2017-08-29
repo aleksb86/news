@@ -1,9 +1,18 @@
 class PostsController < ApplicationController
 
   def index
-    @posts = Post.all
-    respond_to do |format|
-      format.js
+    if params[:search]
+      # Will return array of Post instances (if found any)
+      @posts = Post.es.search(params[:search]).results
+      respond_to do |format|
+        format.html
+        format.js { render "posts/results" }
+      end
+    else
+      @posts = Post.all
+      respond_to do |format|
+        format.js
+      end
     end
   end
 
@@ -88,6 +97,15 @@ class PostsController < ApplicationController
       end
     end
   end
+
+  # def search
+  #   @posts = Post.es.search(params[:search])
+  #   respond_to do |format|
+  #     format.html
+  #     format.json
+  #     format.js { render "posts/index" }
+  #   end
+  # end
 
   def posts_params
     params.require(:post).permit(:title, :content)

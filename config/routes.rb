@@ -4,7 +4,7 @@ News::Application.routes.draw do
   resources :users
 
   resources :posts do
-    resources :attachments, only: [:show]
+    resources :attachments, only: [:show, :destroy]
     #  collection do
     #   get :attachment, on: :member
     # end #/posts/:post_id/attachment?num=i
