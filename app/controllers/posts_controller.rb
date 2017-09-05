@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-
+  before_filter :authenticate_user!
   def index
     if params[:search]
       # Will return array of Post instances (if found any)
@@ -11,6 +11,7 @@ class PostsController < ApplicationController
     else
       @posts = Post.all
       respond_to do |format|
+        format.html
         format.js
       end
     end
@@ -32,6 +33,10 @@ class PostsController < ApplicationController
       end
     end
 
+    unless current_user.nil?
+      @post.user_id = current_user.id
+    end
+
     respond_to do |format|
       if request.xhr? || remotipart_submitted?
         if @post.save
@@ -41,9 +46,10 @@ class PostsController < ApplicationController
           # format.json { render json: @post, status: :created }
         else
           format.html { render action: "new" }
+          format.js
         end
       else
-        p "remotipart not used!"
+        p "---------remotipart not used!"
       end
     end
   end
@@ -64,16 +70,18 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update_attributes(posts_params)
-
       unless params[:post][:attachments].nil?
         @post.attachments += params[:post][:attachments].map do |photo|
           attachment = Attachment.new
           attachment.photo = photo
           attachment.post_id = @post.id
           attachment.save
+          p "ATTACHMENT save: #{attachment.errors.messages}"
           attachment
         end
       end
+      p "POST ATTACHMENTS: #{@post.attachments}"
+      @post.save
 
       @posts = Post.all
       respond_to do |format|

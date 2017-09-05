@@ -4,19 +4,9 @@ class Post
   include ActiveModel::Validations
   include Mongoid::Elasticsearch
 
-  attr_accessible :_type, :_id, :_index, :_score, :content, :title
+  # attr_accessible :_type, :_id, :_index, :_score, :content, :title
 
-  elasticsearch! index_mappings: {
-    name: {
-      type: 'multi_field',
-      fields: {
-        title: {type: 'string', boost: 10},
-        content: {type: 'string', boost: 5},
-        suggest: {type: 'completion'}
-      }
-    },
-    desc: {type: 'string'},
-  }
+  elasticsearch!
 
   validates :title, presence: true
   validates :content, presence: true
@@ -25,5 +15,6 @@ class Post
   field :content, type: String
 
   has_many :attachments, dependent: :destroy
+  belongs_to :user
 
 end
