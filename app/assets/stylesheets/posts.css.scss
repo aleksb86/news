@@ -3,8 +3,11 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .cut-text {
     white-space: wrap;
-    width: 20em;
     height: 5em;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.btn-link {
+  color: #333333;
 }

@@ -2,9 +2,16 @@ class AttachmentsController < ApplicationController
   before_filter :authenticate_user!
   def show
     @attachment = Attachment.find(params[:id])
-    if params[:thumb]
-      content = @attachment.photo.thumb.read
-    else
+
+    unless @attachment.nil?
+      if params[:thumb]
+        content = @attachment.photo.thumb.read
+      else
+        content = @attachment.photo.read
+      end
+    else # TODO: fix default image for posts.
+      @attachment = Attachment.new
+      @attachment.photo = default_url
       content = @attachment.photo.read
     end
 
