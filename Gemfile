@@ -29,3 +29,4 @@ gem 'remotipart', '~> 1.3', '>= 1.3.1'
 # gem "jquery-fileupload-rails"
 gem 'pry-rails'
 gem 'mongoid-elasticsearch'
+gem 'cancancan', '~> 1.10'

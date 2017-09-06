@@ -1,5 +1,5 @@
 class AttachmentsController < ApplicationController
-
+  before_filter :authenticate_user!
   def show
     @attachment = Attachment.find(params[:id])
     if params[:thumb]

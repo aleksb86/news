@@ -25,5 +25,6 @@ class Post
   field :content, type: String
 
   has_many :attachments, dependent: :destroy
+  belongs_to :user
 
 end
