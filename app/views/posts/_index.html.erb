@@ -1,6 +1,5 @@
 <% unless @posts.nil? %>
   <% @posts.each do |post| %>
-
     <div class="well">
         <div class="media">
           <a class="pull-left" href="#">
@@ -15,22 +14,25 @@
             <p class="text-right"><%= post.id %></p>
             <p class="cut-text"><%= post.content %></p>
             <ul class="list-inline list-unstyled">
-              <li>
+              <% if current_user.present? && (can? :update, Post) %>
+                <li>
+                  <span>
+                    <i class="glyphicon glyphicon-pencil"></i>
+                    <%= link_to "Edit", edit_post_path(post), remote: true, class: "btn btn-link" %>
+                  </span>
+                </li>
+              <% end %>
+              <% if current_user.present? && (can? :destroy, Post) %>
+                <li>|</li>
                 <span>
-                  <i class="glyphicon glyphicon-pencil"></i>
-                  <%= link_to "Edit", edit_post_path(post), remote: true, class: "btn btn-link" %>
+                  <i class="glyphicon glyphicon-trash"></i>
+                  <%= link_to "Delete", post, remote: true, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-link" %>
                 </span>
-              </li>
-              <li>|</li>
-              <span>
-                <i class="glyphicon glyphicon-trash"></i>
-                <%= link_to "Delete", post, remote: true, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-link" %>
-              </span>
+              <% end %>
             </ul>
          </div>
       </div>
     </div>
-
   <% end %>
 <% else %>
   <p>There are no posts..</p>

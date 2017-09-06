@@ -84,6 +84,10 @@ GEM
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     json (1.8.6)
+    kaminari-core (1.0.1)
+    kaminari-mongoid (1.0.1)
+      kaminari-core (~> 1.0)
+      mongoid
     mail (2.5.5)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -191,6 +195,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   devise (= 2.1.2)
   jquery-rails
+  kaminari-mongoid
   mini_magick
   mongoid (= 3.1.7)
   mongoid-elasticsearch

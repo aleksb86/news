@@ -2,19 +2,23 @@
   <%= text_field_tag :search, params[:search], placeholder: "Search for posts..", class: "form-control" %>
   <%= submit_tag "Go!", :name => nil, class: "btn btn-default" %>
 <% end %>
-<h1>Home#index</h1>
+<h1>Новостная лента</h1>
+<!-- TODO: add Bootstrap alerts -->
 <div id="alert_placeholder"></div>
-<p>Find me in app/views/home/index.html.erb</p>
 <p>Users list:</p>
 <% @users.each do |user| %>
   <p>User: <%= link_to user.name, user_path(user) %></p>
 <% end %>
 <p>Posts:</p>
-<p><%= link_to "Create post", new_post_path, remote: true, class: "btn btn-primary" %></p>
+<% if current_user.present? %>
+    <p><%= link_to "Create post", new_post_path, remote: true, class: "btn btn-primary" %></p>
+<% end %>
   <div id="posts-list">
     <%= render :partial => "posts/index" %>
   </div>
 <div class="new-post"></div>
-<p><%= link_to "Create post", new_post_path, remote: true, class: "btn btn-primary" %></p>
+<% if current_user.present? %>
+  <p><%= link_to "Create post", new_post_path, remote: true, class: "btn btn-primary" %></p>
+<% end %>
 <div id="post-modal" class="modal fade"></div>
 <div id="FoundPosts" class="modal fade"></div>

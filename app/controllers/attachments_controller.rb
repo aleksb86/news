@@ -1,5 +1,5 @@
 class AttachmentsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, only: [:destroy]
   def show
     @attachment = Attachment.find(params[:id])
 

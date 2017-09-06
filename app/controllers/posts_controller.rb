@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, except: [:index]
+  paginates_per 5
+
   def index
     if params[:search]
       # Will return array of Post instances (if found any)
@@ -9,7 +11,7 @@ class PostsController < ApplicationController
         format.js { render "posts/results" }
       end
     else
-      @posts = Post.all
+      @posts = Post.paginate(page: params[:page])
       respond_to do |format|
         format.html
         format.js
@@ -49,7 +51,7 @@ class PostsController < ApplicationController
           format.js
         end
       else
-        p "---------remotipart not used!"
+        p "REMOTIPART NOT USED!"
       end
     end
   end

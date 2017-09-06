@@ -7,11 +7,12 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 puts 'Create default roles:'
 admin = Role.create! name: 'Admin', description: 'Admin role, who can CRUD any application object'
-user = Role.create! name: 'User', description: 'User role - can view and search data'
+writer = Role.create! name: 'Writer', description: 'Writer role - can create new post and edit posts which he created'
 guest = Role.create! name: 'Guest', description: 'Unregistered user - can view and search public data'
-puts 'Roles created: ' << admin.name, user.name, guest.name
-puts 'Create default admin and user:'
-alex = User.create! name: 'Alex', email: 'alex.is.awesome@gmail.com', password: 'qwerty', password_confirmation: 'qwerty', role: 'Admin'
-# user = User.create! :name => 'First User', :email => 'user@example.com', :password => 'qwerty123', :password_confirmation => 'qwerty123'
-# user2 = User.create! :name => 'Second User', :email => 'user2@example.com', :password => 'qwerty321', :password_confirmation => 'qwerty321'
-# puts 'New user created: ' << user2.name
+puts 'Roles created: ' << admin.name, writer.name, guest.name
+puts 'Create default admin and moder:'
+admin.users.create! name: 'Admin', email: 'alex.is.awesome@gmail.com', password: 'qwerty', password_confirmation: 'qwerty'
+writer.users.create! name: 'Moder', email: 'moder@gmail.com', password: 'qwerty', password_confirmation: 'qwerty'
+# administrator = User.create! name: 'Admin', email: 'alex.is.awesome@gmail.com', password: 'qwerty', password_confirmation: 'qwerty', role: admin
+# moderator = User.create! name: 'Moder', email: 'moder@gmail.com', password: 'qwerty', password_confirmation: 'qwerty', role: writer
+puts 'Users created: ' << User.find_by(name: "Admin").name, User.find_by(name: "Moder").name
