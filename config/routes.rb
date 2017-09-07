@@ -1,6 +1,6 @@
 News::Application.routes.draw do
   resources :roles
-  root :to => 'home#index'
+  root :to => 'posts#index'
   devise_for :users
   resources :users
 
