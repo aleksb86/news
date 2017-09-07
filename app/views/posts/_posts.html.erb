@@ -4,9 +4,12 @@
         <div class="media">
           <a class="pull-left" href="#">
               <!-- TODO: fix default image for post. -->
-              <% post.attachments.each do |attachment| %>
-                <%= image_tag(attachment_path(attachment.id, thumb: true),
-                  class: "media-object img-thumbnail") %>
+              <% if post.attachments.any? %>
+                <%= image_tag(attachment_path(post.attachments.first.id),
+                  class: "img-responsive", size: "300x300") %>
+              <% else %>
+                <%= image_tag(attachment_path("noimage"),
+                  class: "img-responsive", size: "300x300") %>
               <% end %>
           </a>
         <div class="media-body">

@@ -9,6 +9,7 @@ News::Application.routes.draw do
   end
 
   resources :attachments, except: [:index, :new, :create, :edit, :update]
+  # get 'attachments/noimage' => 'attachments#noimage', as: :attachment_noimage
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

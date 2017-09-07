@@ -1,1 +1,1 @@
-$("#posts-list").html("<%= escape_javascript(render partial: 'posts/index' ) %>")
+$("#posts-list").html("<%= escape_javascript(render partial: 'posts' ) %>")

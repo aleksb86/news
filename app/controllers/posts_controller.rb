@@ -87,7 +87,7 @@ class PostsController < ApplicationController
       @posts = Post.all
       respond_to do |format|
         format.html
-        format.js { render "posts/index" }
+        format.js { render "index" }
       end
     else
       format.html

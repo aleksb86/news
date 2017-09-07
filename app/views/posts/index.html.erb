@@ -12,6 +12,9 @@
 <h1>Новостная лента</h1>
 <!-- TODO: add Bootstrap alerts -->
 <div id="alert_placeholder"></div>
+<% if current_user.present? && (can? :create, Post) %>
+    <p><%= link_to "Create post", new_post_path, remote: true, class: "btn btn-primary" %></p>
+<% end %>
   <% if @posts %>
     <div id="posts-list">
       <!-- TODO: add variants - load posts list or single post -->
@@ -23,8 +26,5 @@
 
   <%= pages_links(Post.all.size, @posts.count, "http://localhost:3000") %>
 <div class="new-post"></div>
-<% if current_user.present? && (can? :create, Post) %>
-    <p><%= link_to "Create post", new_post_path, remote: true, class: "btn btn-primary" %></p>
-<% end %>
 <div id="post-modal" class="modal fade"></div>
 <div id="FoundPosts" class="modal fade"></div>
