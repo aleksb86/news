@@ -17,15 +17,22 @@
   <p>User: <%= link_to user.name, user_path(user) %></p>
 <% end %>
 <p>Posts:</p>
-<% if current_user.present? %>
-    <p><%= link_to "Create post", new_post_path, remote: true, class: "btn btn-primary" %></p>
-<% end %>
+
   <div id="posts-list">
     <%= render :partial => "posts/index" %>
   </div>
+  <%= pages_links(Post.all.size, @posts.count, "http://localhost:3000") %>
+
+  <!-- <ul class="pagination">
+    <li><a href="#">1</a></li>
+    <li class="active"><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">5</a></li>
+  </ul> -->
 <div class="new-post"></div>
-<% if current_user.present? %>
-  <p><%= link_to "Create post", new_post_path, remote: true, class: "btn btn-primary" %></p>
+<% if current_user.present? && (can? :create, Post) %>
+    <p><%= link_to "Create post", new_post_path, remote: true, class: "btn btn-primary" %></p>
 <% end %>
 <div id="post-modal" class="modal fade"></div>
 <div id="FoundPosts" class="modal fade"></div>

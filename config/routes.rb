@@ -6,19 +6,9 @@ News::Application.routes.draw do
 
   resources :posts do
     resources :attachments, only: [:show, :destroy]
-    #  collection do
-    #   get :attachment, on: :member
-    # end #/posts/:post_id/attachment?num=i
-    # resources :attachment do
-    #   get :photo, on: :member
-    # end
   end
 
   resources :attachments, except: [:index, :new, :create, :edit, :update]
-  # get "attachments/:id", to: "attachments#show"
-  # delete "attachments/:id", to: "attachments#destroy"
-
-  # match '/uploads/grid/user/image/:id/:filename' => 'gridfs#image'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

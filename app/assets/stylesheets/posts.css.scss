@@ -2,14 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-// Class for text limitation in block elements:
-.cut-text {
-    white-space: wrap;
-    height: 5em;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
 // Setting color for link buttons in forms eg: edit, delete etc.
 .btn-link {
   color: #333333;
