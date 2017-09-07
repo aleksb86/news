@@ -1,6 +1,5 @@
 class PostsController < ApplicationController
   before_filter :authenticate_user!, except: [:index]
-  paginates_per 5
 
   def index
     if params[:search]
@@ -11,7 +10,7 @@ class PostsController < ApplicationController
         format.js { render "posts/results" }
       end
     else
-      @posts = Post.paginate(page: params[:page])
+      @posts = Post.all
       respond_to do |format|
         format.html
         format.js
