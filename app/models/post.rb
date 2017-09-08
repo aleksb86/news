@@ -17,4 +17,7 @@ class Post
   has_many :attachments, dependent: :destroy
   belongs_to :user
 
+  def add_attachments(attachments)
+    attachments.first.persisted?
+  end
 end

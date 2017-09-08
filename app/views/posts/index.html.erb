@@ -13,20 +13,11 @@
 <!-- TODO: add Bootstrap alerts -->
 <div id="alert_placeholder"></div>
 <% if current_user.present? && (can? :create, Post) %>
-    <p><%= link_to "Create post", new_post_path, remote: true, class: "btn btn-primary" %></p>
+    <p><%= link_to "Новая статья", new_post_path, remote: true, class: "btn btn-primary" %></p>
 <% end %>
-  <% if @posts %>
-    <div id="posts-list">
-      <!-- TODO: add variants - load posts list or single post -->
-      <%= render :partial => "posts" %>
-    </div>
-  <% elsif @post %>
-    <%= render partial: "show" %>
-  <% end %>
-
-  <%= will_paginate @posts, renderer: BootstrapPagination::Rails,
-    previous_label: t("Предыдущая"), next_label: t("Следующая") %>
-
+  <div id="posts-list">
+    <%= render partial: "posts" %>
+  </div>
 <div class="new-post"></div>
 <div id="post-modal" class="modal fade"></div>
 <div id="FoundPosts" class="modal fade"></div>
