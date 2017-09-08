@@ -10,19 +10,19 @@ class PostsController < ApplicationController
         format.js { render "posts/results" }
       end
     end
-    # @users = User.all
-    # pagination:
-    if params[:page].nil?
-      pages = 0
-    else
-      pages = params[:page].to_i - 1
-    end
-    @posts = Post.skip(pages).limit(5).entries
-  end
 
-  def show
-    @post = Post.find(params[:id])
+    @posts = Post.paginate(page: params[:page], per_page: 3)
+  #   if params[:page].nil?
+  #     pages = 0
+  #   else
+  #     pages = params[:page].to_i - 1
+  #   end
+  #   @posts = Post.skip(pages).limit(5).entries
   end
+  #
+  # def show
+  #   @post = Post.find(params[:id])
+  # end
 
   def create
     @post = Post.new(posts_params)

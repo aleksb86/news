@@ -24,7 +24,8 @@
     <%= render partial: "show" %>
   <% end %>
 
-  <%= pages_links(Post.all.size, @posts.count, "http://localhost:3000") %>
+  <%= will_paginate @posts, renderer: BootstrapPagination::Rails %>
+
 <div class="new-post"></div>
 <div id="post-modal" class="modal fade"></div>
 <div id="FoundPosts" class="modal fade"></div>

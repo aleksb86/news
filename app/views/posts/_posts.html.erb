@@ -3,7 +3,6 @@
     <div class="well">
         <div class="media">
           <a class="pull-left" href="#">
-              <!-- TODO: fix default image for post. -->
               <% if post.attachments.any? %>
                 <%= image_tag(attachment_path(post.attachments.first.id),
                   class: "img-responsive", size: "300x300") %>
