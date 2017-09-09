@@ -25,17 +25,12 @@ class AttachmentsController < ApplicationController
         expires_in 0, public: true
       end
     else
-      content = File.open(File.join(Rails.root, Attachment.new.photo.default_url))
-      send_data content, type: 'image/png', disposition: "inline"
+      File.join(request.base_url, Attachment.new.photo.default_url)
+      # content = File.open(File.join(request.base_url, Attachment.new.photo.default_url))
+      # send_data content, type: 'image/png', disposition: "inline"
     end
 
   end
-
-  # def noimage
-  #   p "CALLED"
-  #   content = File.open(default_url).read
-  #   send_data content, disposition: "inline"
-  # end
 
   def destroy
     attachment = Attachment.find(params[:id])
