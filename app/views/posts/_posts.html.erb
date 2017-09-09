@@ -2,8 +2,7 @@
   <% @posts.each do |post| %>
     <div class="well">
         <div class="media">
-          <a class="pull-left" href="#">
-              <!-- TODO: fix default image for post. -->
+          <p class="pull-left">
               <% if post.attachments.any? %>
                 <%= image_tag(attachment_path(post.attachments.first.id),
                   class: "img-responsive", size: "300x300") %>
@@ -11,9 +10,9 @@
                 <%= image_tag(attachment_path("noimage"),
                   class: "img-responsive", size: "300x300") %>
               <% end %>
-          </a>
+          </p>
         <div class="media-body">
-          <h4 class="media-heading"><%= post.title %></h4>
+          <h4 class="media-heading"><%= link_to post.title, post, remote: true %></h4>
             <p class="text-right"><%= post.id %></p>
             <p><%= sanitize post.content[0..300] %>...</p>
             <ul class="list-inline list-unstyled">
@@ -40,3 +39,10 @@
 <% else %>
   <p>There are no posts..</p>
 <% end %>
+
+<div id="test">
+  test:
+</div>
+
+<%= will_paginate @posts, renderer: BootstrapPagination::Rails,
+  previous_label: t("Предыдущая"), next_label: t("Следующая") %>
