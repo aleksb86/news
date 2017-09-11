@@ -19,18 +19,20 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(posts_params)
     @post.save!
-    unless params[:post][:attachments].nil?
-      @post.add_attachments(params[:post][:attachments])
-      # @post.attachments = params[:post][:attachments].map do |photo|
-      #   attachment = Attachment.new(photo: photo, post_id: @post.id).save
-      #   attachment
-      #   # attachment = Attachment.new
-      #   # attachment.photo = photo # better by hash in new method call
-      #   # attachment.post_id = @post.id
-      #   # attachment.save
-      #   # attachment
-      # end
-    end
+    @post.add_attachments(params[:post][:attachments])
+    @post.save!
+    # unless params[:post][:attachments].nil?
+    #   @post.add_attachments(params[:post][:attachments])
+    #   # @post.attachments = params[:post][:attachments].map do |photo|
+    #   #   attachment = Attachment.new(photo: photo, post_id: @post.id).save
+    #   #   attachment
+    #   #   # attachment = Attachment.new
+    #   #   # attachment.photo = photo # better by hash in new method call
+    #   #   # attachment.post_id = @post.id
+    #   #   # attachment.save
+    #   #   # attachment
+    #   # end
+    # end
 
     # unless current_user.nil?
     #   @post.user_id = current_user.id
@@ -57,31 +59,13 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
-    @post.attachments = Attachment.where(post_id: @post.id)
   end
 
   def update
     @post = Post.find(params[:id])
     if @post.update_attributes(posts_params)
-      unless params[:post][:attachments].nil?
-        @post.attachments += params[:post][:attachments].map do |photo|
-          attachment = Attachment.new
-          attachment.photo = photo #  смотри  new action
-          attachment.post_id = @post.id
-          attachment.save
-          attachment
-        end
-      end
-
-      # @posts = Post.all
-      @posts = Post.paginate(page: params[:page], per_page: 3)
-      respond_to do |format|
-        format.html
-        format.js { render "index" }
-      end
-    else
-      format.html
-      format.js
+      @post.add_attachments(params[:post][:attachments])
+      @post.save!
     end
   end
 

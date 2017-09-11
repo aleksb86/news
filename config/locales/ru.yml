@@ -1,0 +1,13 @@
+ru:
+  hello: "хелло ворлд"
+  post:
+    post_content: "Содержимое статьи:"
+    title: "Заголовок"
+    content: "Текст"
+    attachments: "Прикрепленные фото"
+    save: "Сохранить"
+    cancel: "Отмена"
+    delete: "Удалить"
+
+  attachment:
+    warning_question_del: "Вы уверены, что хотите удалить изображение?"
