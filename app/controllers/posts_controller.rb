@@ -8,7 +8,7 @@ class PostsController < ApplicationController
         format.js { render "posts/results" }
       end
     else
-      @posts = Post.paginate(page: params[:page], per_page: 3)
+      @posts = Post.order_by(created_at: :desc).paginate(page: params[:page], per_page: 3)
     end
   end
 
@@ -18,39 +18,20 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(posts_params)
-    @post.save!
-    @post.add_attachments(params[:post][:attachments])
-    @post.save!
-    # unless params[:post][:attachments].nil?
-    #   @post.add_attachments(params[:post][:attachments])
-    #   # @post.attachments = params[:post][:attachments].map do |photo|
-    #   #   attachment = Attachment.new(photo: photo, post_id: @post.id).save
-    #   #   attachment
-    #   #   # attachment = Attachment.new
-    #   #   # attachment.photo = photo # better by hash in new method call
-    #   #   # attachment.post_id = @post.id
-    #   #   # attachment.save
-    #   #   # attachment
-    #   # end
-    # end
+    if @post.save
+      @post.add_attachments(params[:post][:attachments])
+      flash[:notice] = 'post_successfully_created'
 
-    # unless current_user.nil?
-    #   @post.user_id = current_user.id
-    # end
+      respond_to do |format|
+        format.js { render 'create' }
+      end
+    else
+      flash[:notice] = 'post_create_error'
 
-    # respond_to do |format|
-    #   if request.xhr? || remotipart_submitted?
-    #     if @post.save
-    #       format.html
-    #       format.js # { render layout: false }#, :status => :created,
-    #         # :location => @post, :layout => !request.xhr? }
-    #       # format.json { render json: @post, status: :created }
-    #     else
-    #       format.html { render action: "new" }
-    #       format.js
-    #     end
-    #   end
-    # end
+      respond_to do |format|
+        format.js { render 'new' }
+      end
+    end
   end
 
   def new
@@ -72,12 +53,9 @@ class PostsController < ApplicationController
   def destroy
     post = Post.find(params[:id])
     if post.destroy
-      # @posts = Post.all
-      @posts = Post.paginate(page: params[:page], per_page: 3)
+      @posts = Post.order_by(created_at: :desc).paginate(per_page: 3)
       respond_to do |format|
-        format.html
-        format.json
-        format.js { render "index" }
+        format.js { render "destroy" }
       end
     end
   end

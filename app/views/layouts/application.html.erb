@@ -33,7 +33,10 @@
         <ul id="logged_user_name" class="nav navbar-nav">
           <li>
             <% unless current_user.nil? %>
-              <a>Logged in as: <%= current_user.name %></a>
+              <a>
+                <%= t('devise.auth.logged_as') %>
+                <%= current_user.name %>
+              </a>
             <% end %>
           </li>
         </ul>
