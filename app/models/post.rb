@@ -4,20 +4,27 @@ class Post
   include ActiveModel::Validations
   include Mongoid::Elasticsearch
 
-  # attr_accessible :_type, :_id, :_index, :_score, :content, :title
-
   elasticsearch!
+  after_save :add_attachments
 
-  validates :title, presence: true
-  validates :content, presence: true
+  # validates :title, presence: true
+  # validates :content, presence: true
 
-  field :title, type: String
-  field :content, type: String
+  field :title, type: String, presence: true
+  field :content, type: String, presence: true
 
   has_many :attachments, dependent: :destroy
   belongs_to :user
 
   def add_attachments(attachments)
-    attachments.first.persisted?
+    this.attachments = attachments.map do |photo|
+      attachment = Attachment.new(photo: photo, post_id: this.id)
+      unless attachment.persisted?
+        attachment.save
+      end
+      attachment
+    end
+    this.save!
+    # attachments.first.persisted?
   end
 end
