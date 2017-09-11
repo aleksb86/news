@@ -1,5 +1,4 @@
 ru:
-  hello: "хелло ворлд"
   post:
     post_content: "Содержимое статьи:"
     title: "Заголовок"
@@ -8,6 +7,7 @@ ru:
     save: "Сохранить"
     cancel: "Отмена"
     delete: "Удалить"
-
+    edit: "Изменить"
+    no_posts: "Нет созданных статей."
   attachment:
     warning_question_del: "Вы уверены, что хотите удалить изображение?"

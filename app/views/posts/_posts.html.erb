@@ -20,7 +20,7 @@
                 <li>
                   <span>
                     <i class="glyphicon glyphicon-pencil"></i>
-                    <%= link_to "Edit", edit_post_path(post), remote: true, class: "btn btn-link" %>
+                    <%= link_to t(:edit, scope: :post), edit_post_path(post), remote: true, class: "btn btn-link" %>
                   </span>
                 </li>
               <% end %>
@@ -28,7 +28,7 @@
                 <li>|</li>
                 <span>
                   <i class="glyphicon glyphicon-trash"></i>
-                  <%= link_to "Delete", post, remote: true, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-link" %>
+                  <%= link_to t(:delete, scope: :post), post, remote: true, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-link" %>
                 </span>
               <% end %>
             </ul>
@@ -37,7 +37,7 @@
     </div>
   <% end %>
 <% else %>
-  <p>There are no posts..</p>
+  <p><%= t(:no_posts, scope: :post) %></p>
 <% end %>
 
 <div id="test">
