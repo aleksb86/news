@@ -59,7 +59,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
-    devise (2.1.2)
+    devise (2.2.8)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
       railties (~> 3.1)
@@ -195,7 +195,7 @@ DEPENDENCIES
   carrierwave (~> 0.11.2)
   carrierwave-mongoid
   coffee-rails (~> 3.2.1)
-  devise (= 2.1.2)
+  devise (= 2.2.8)
   jquery-rails
   mini_magick
   mongoid (= 3.1.7)
@@ -211,4 +211,4 @@ DEPENDENCIES
   will_paginate_mongoid
 
 BUNDLED WITH
-   1.15.3
+   1.15.4

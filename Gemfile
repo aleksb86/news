@@ -15,7 +15,7 @@ gem "mongoid", '= 3.1.7'#{}"= 3.0.3"
 # gem "cucumber-rails", "= 1.3.0", :group => :test, :require => false
 # gem "launchy", "= 2.1.2", :group => :test
 # gem "factory_girl_rails", "= 4.0.0", :group => [:development, :test]
-gem "devise", "= 2.1.2"
+gem "devise", "= 2.2.8"
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 gem 'bson_ext'
