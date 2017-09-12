@@ -5,22 +5,20 @@
 
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-          <h4 class="modal-title" id="myModalLabel">Found posts:</h4>
+          <h4 class="modal-title">Found posts:</h4>
         </div>
         <div class="modal-body">
           <div class="row">
 
             <% @posts.each do |post| %>
 
-          	<div class="col-md-4">
+          	<div>
             	<div class="panel panel-default">
                 <div class="panel-heading">
                   <%= link_to post.title, post %>
                 </div>
-                <div class="panel-body" style="max-height: 5;">
-                  <div class="cut-text">
-                    <%= sanitize post.content[0..300] %> ...
-                  </div>
+                <div class="panel-body">
+                  <%= sanitize post.content[0..300] %> ...
                 </div>
               </div>
           	</div>
@@ -37,7 +35,7 @@
 
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-          <h4 class="modal-title" id="myModalLabel">Nothing found =(</h4>
+          <h4 class="modal-title">Nothing found =(</h4>
         </div>
         <div class="modal-body">
           <div class="row">

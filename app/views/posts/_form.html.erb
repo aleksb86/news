@@ -1,9 +1,25 @@
 <div class="modal-dialog">
   <div class="modal-content">
+    <div id="posts-alert">
+      <% flash.each do |k, v| %>
+        <% if k == :post_create_success %>
+          <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert">x</button>
+            <%= v %>
+          </div>
+        <% elsif k == :post_create_error %>
+          <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">x</button>
+            <%= v %>
+          </div>
+        <% else %>
+        qwer
+        <% end %>
+      <% end %>
+    </div>
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
       </button>
-      <div id="post-alert" class="alert fade in"></div>
       <h4 class="modal-title"><%= t(:post_content, scope: :post) %></h4>
     </div>
     <%= form_for @post, remote: true, html: { style: "display:inline;" } do |f| %>

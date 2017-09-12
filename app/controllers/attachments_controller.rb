@@ -26,12 +26,9 @@ class AttachmentsController < ApplicationController
   def destroy
     attachment = Attachment.find(params[:id])
     if attachment.destroy
-      @post = Post.find(params[:post_id])
-      @post.attachments = Attachment.where(post_id: @post.id)
-      respond_to do |format|
-        format.html
-        format.js
-      end
+      flash[:destroy_attachment_success] = 'destroy_attachment_success'
+    else
+      flash[:destroy_attachment_error] = 'destroy_attachment_error'
     end
   end
 end

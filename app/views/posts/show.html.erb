@@ -5,19 +5,13 @@
   </div>
   <div class="panel-body">
     <%= @post.content %>
-    <div class="row">
-      <% if @post.attachments.any? %>
-        <% @post.attachments.each do |attachment| %>
-          <div class="col-md-4">
-            <!-- TODO: fix moda full-sized image view: -->
-            <div class="thumbnail">
-              <%= link_to(
-                image_tag(attachment_path(attachment.id), size: "350x350"),
-                attachment_path(attachment.id),
-                remote: true) %>
-            </div>
+    <div class="row" id="single-post-attachments">
+      <% @post.attachments.each do |attachment| %>
+        <div class="col-md-4">
+          <div class="thumbnail">
+            <%= link_to image_tag(attachment_path(attachment.id), size: "350x350"), attachment_path(attachment.id), remote: true %>
           </div>
-        <% end %>
+        </div>
       <% end %>
     </div>
   </div>
@@ -41,4 +35,5 @@
     </ul>
   </div>
 </div>
+<div id="post-modal" class="modal fade"></div>
 <div id="image-fullsize" class="modal fade"></div>
