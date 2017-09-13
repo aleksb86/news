@@ -19,17 +19,6 @@
           <a class="navbar-brand" href="/">News Blog</a>
       </div>
       <div id="navbar" class="navbar-collapse collapse" aria-expanded="true" style="">
-        <ul class="nav navbar-nav">
-          <li>
-            <a>
-              <% flash.each do |name, msg| %>
-                <% if msg.is_a?(String) %>
-                  <%= content_tag :div, msg, :id => "flash_#{name}" %>
-                <% end %>
-              <% end %>
-            </a>
-          </li>
-        </ul>
         <ul id="logged_user_name" class="nav navbar-nav">
           <li>
             <% unless current_user.nil? %>

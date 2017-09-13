@@ -19,18 +19,18 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(posts_params)
-    if @post.save
+    if @post.save!
       @post.add_attachments(params[:post][:attachments])
       @posts = Post.order_by(created_at: :desc)
         .paginate(page: params[:page], per_page: per_page)
 
-      flash[:post_create_success] = 'post_successfully_created'
+      flash.now[:success] = 'post_successfully_created'
 
       respond_to do |format|
         format.js { render 'create' }
       end
     else
-      flash[:post_create_error] = 'post_create_error'
+      flash.now[:danger] = 'post_create_error'
 
       respond_to do |format|
         format.js { render 'new' }
@@ -57,10 +57,11 @@ class PostsController < ApplicationController
   def destroy
     post = Post.find(params[:id])
     if post.destroy
-      # @posts = Post.order_by(created_at: :desc).paginate(page: params[:page], per_page: 3)
-      respond_to do |format|
-        format.js { redirect_to action: "index" }
-      end
+      flash[:success] = 'post_delete_success'
+      @posts = Post.order_by(created_at: :desc)
+        .paginate(page: params[:page], per_page: per_page)
+    else
+      flash[:danger] = 'post_delete_error'
     end
   end
 

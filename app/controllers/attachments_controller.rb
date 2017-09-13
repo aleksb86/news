@@ -26,9 +26,9 @@ class AttachmentsController < ApplicationController
   def destroy
     attachment = Attachment.find(params[:id])
     if attachment.destroy
-      flash[:destroy_attachment_success] = 'destroy_attachment_success'
+      flash[:success] = 'destroy_attachment_success'
     else
-      flash[:destroy_attachment_error] = 'destroy_attachment_error'
+      flash[:danger] = 'destroy_attachment_error'
     end
   end
 end

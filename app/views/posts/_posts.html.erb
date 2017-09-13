@@ -1,3 +1,6 @@
+<div class="alert-placeholder">
+  <%= alert %>
+</div>
 <% unless @posts.nil? %>
   <% @posts.each do |post| %>
     <div class="well">
@@ -12,7 +15,7 @@
               <% end %>
           </p>
         <div class="media-body">
-          <h4 class="media-heading"><%= link_to post.title, post %></h4>
+          <h4 class="media-heading"><%= link_to post.title, post, remote: true %></h4>
             <p class="text-right"><%= post.id %></p>
             <p><%= sanitize post.content[0..300] %>...</p>
             <ul class="list-inline list-unstyled">
@@ -23,7 +26,7 @@
                     <%= link_to t(:edit, scope: :post),
                       edit_post_path(post),
                       remote: true,
-                      class: "btn btn-link" %>
+                      class: "btn btn-link edit-post" %>
                   </span>
                 </li>
               <% end %>
@@ -36,7 +39,7 @@
                     remote: true,
                     method: :delete,
                     data: {confirm: "Are you sure?"},
-                    class: "btn btn-link" %>
+                    class: "btn btn-link delete-post" %>
                 </span>
               <% end %>
             </ul>
@@ -44,10 +47,6 @@
       </div>
     </div>
   <% end %>
-  <div id="pagination">
-    <%= will_paginate @posts, renderer: BootstrapPagination::Rails,
-      previous_label: '<', next_label: '>' %>
-  </div>
 <% else %>
   <p><%= t(:no_posts, scope: :post) %></p>
 <% end %>

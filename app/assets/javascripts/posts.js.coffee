@@ -3,8 +3,6 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $ ->
-  
-  $("#post-modal")
-    .on 'hidden.bs.modal', =>
-      $("#posts-alert").empty()
-      console.log('clear!')
+
+  $(".alert-placeholder").fadeTo(2000, 500).slideUp 500, () ->
+    $(".alert").slideUp(500)
