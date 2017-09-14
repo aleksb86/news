@@ -21,9 +21,7 @@
         <div class="form-group">
           <%= f.label t(:attachments, scope: :post), class: "control-label" %>
           <div id="attachments-list">
-            <% unless @post.attachments.nil? %>
-              <%= render 'attachments/attachments_list' %>
-            <% end %>
+            <%= render 'attachments/attachments_list' %>
           </div>
           <%= f.file_field :attachments, class: "form-control", multiple: "multiple" %>
         </div>

@@ -2,24 +2,26 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-// Setting color for link buttons in forms eg: edit, delete etc.
 .btn-link {
   color: #333333;
 }
 
-// Settings for search form on main page:
 .add-on .input-group-btn > .btn {
   border-left-width:0;left:-2px;
 }
-/* stop the glowing blue shadow */
+
 .add-on .form-control:focus {
  box-shadow:none;
  -webkit-box-shadow:none;
  border-color:#cccccc;
 }
+
 .navbar-nav > li > a {
   border-right: 1px solid #ddd;
   padding-bottom: 15px;
   padding-top: 15px;
 }
-.navbar-nav:last-child{ border-right:0}
+
+.navbar-nav:last-child {
+  border-right:0
+}

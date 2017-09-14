@@ -3,47 +3,49 @@
 </div>
 <% unless @posts.nil? %>
   <% @posts.each do |post| %>
-    <div class="well">
-        <div class="media">
-          <p class="pull-left">
-              <% if post.attachments.any? %>
-                <%= image_tag(attachment_path(post.attachments.first.id),
-                  class: "img-responsive", size: "300x300") %>
-              <% else %>
-                <%= image_tag(attachment_path("noimage"),
-                  class: "img-responsive", size: "300x300") %>
-              <% end %>
-          </p>
-        <div class="media-body">
-          <h4 class="media-heading"><%= link_to post.title, post, remote: true %></h4>
-            <p class="text-right"><%= post.id %></p>
-            <p><%= sanitize post.content[0..300] %>...</p>
-            <ul class="list-inline list-unstyled">
-              <% if current_user.present? && (can? :update, Post) %>
-                <li>
+    <div id=<%= post.id %>>
+      <div class="well">
+          <div class="media">
+            <p class="pull-left">
+                <% if post.attachments.any? %>
+                  <%= image_tag(attachment_path(post.attachments.first.id),
+                    class: "img-responsive", size: "300x300") %>
+                <% else %>
+                  <%= image_tag(attachment_path("noimage"),
+                    class: "img-responsive", size: "300x300") %>
+                <% end %>
+            </p>
+          <div class="media-body">
+            <h4 class="media-heading"><%= link_to post.title, post, remote: true %></h4>
+              <p class="text-right"><%= post.id %></p>
+              <p><%= sanitize post.content[0..300] %>...</p>
+              <ul class="list-inline list-unstyled">
+                <% if current_user.present? && (can? :update, Post) %>
+                  <li>
+                    <span>
+                      <i class="glyphicon glyphicon-pencil"></i>
+                      <%= link_to t(:edit, scope: :post),
+                        edit_post_path(post),
+                        remote: true,
+                        class: "btn btn-link edit-post" %>
+                    </span>
+                  </li>
+                <% end %>
+                <% if current_user.present? && (can? :destroy, Post) %>
+                  <li>|</li>
                   <span>
-                    <i class="glyphicon glyphicon-pencil"></i>
-                    <%= link_to t(:edit, scope: :post),
-                      edit_post_path(post),
+                    <i class="glyphicon glyphicon-trash"></i>
+                    <%= link_to t(:delete, scope: :post),
+                      post,
                       remote: true,
-                      class: "btn btn-link edit-post" %>
+                      method: :delete,
+                      data: {confirm: "Are you sure?"},
+                      class: "btn btn-link delete-post" %>
                   </span>
-                </li>
-              <% end %>
-              <% if current_user.present? && (can? :destroy, Post) %>
-                <li>|</li>
-                <span>
-                  <i class="glyphicon glyphicon-trash"></i>
-                  <%= link_to t(:delete, scope: :post),
-                    post,
-                    remote: true,
-                    method: :delete,
-                    data: {confirm: "Are you sure?"},
-                    class: "btn btn-link delete-post" %>
-                </span>
-              <% end %>
-            </ul>
-         </div>
+                <% end %>
+              </ul>
+           </div>
+        </div>
       </div>
     </div>
   <% end %>

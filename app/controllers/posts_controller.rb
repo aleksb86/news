@@ -21,13 +21,13 @@ class PostsController < ApplicationController
     @post = Post.new(posts_params)
     if @post.save!
       @post.add_attachments(params[:post][:attachments])
-      @posts = Post.order_by(created_at: :desc)
-        .paginate(page: params[:page], per_page: per_page)
+      # @posts = Post.order_by(created_at: :desc)
+      #   .paginate(page: params[:page], per_page: per_page)
 
       flash.now[:success] = 'post_successfully_created'
 
       respond_to do |format|
-        format.js { render 'create' }
+        format.js { render 'create', locals: {post: @post} }
       end
     else
       flash.now[:danger] = 'post_create_error'
@@ -50,7 +50,16 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     if @post.update_attributes(posts_params)
       @post.add_attachments(params[:post][:attachments])
-      @post.save!
+      # @post.save!
+      respond_to do |format|
+        format.js { render 'update', locals: {post: @post} }
+      end
+      flash.now[:success] = 'post_update_succeeded'
+    else
+      respond_to do |format|
+        format.js { render 'edit' }
+      end
+      flash.now[:danger] = 'post_update_failed'
     end
   end
 
