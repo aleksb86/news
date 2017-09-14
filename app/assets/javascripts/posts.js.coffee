@@ -3,6 +3,6 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $ ->
-
+# TODO: 
   $(".alert-placeholder").fadeTo(2000, 500).slideUp 500, () ->
     $(".alert").slideUp(500)

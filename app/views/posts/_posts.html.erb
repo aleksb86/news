@@ -1,6 +1,3 @@
-<div class="alert-placeholder">
-  <%= alert %>
-</div>
 <% unless @posts.nil? %>
   <% @posts.each do |post| %>
     <div id=<%= post.id %>>
@@ -39,7 +36,7 @@
                       post,
                       remote: true,
                       method: :delete,
-                      data: {confirm: "Are you sure?"},
+                      data: {confirm: t(:warning_question_del, scope: :post)},
                       class: "btn btn-link delete-post" %>
                   </span>
                 <% end %>

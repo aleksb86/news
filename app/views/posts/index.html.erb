@@ -4,7 +4,7 @@
 <div class="container">
   <%= form_tag(posts_path, :method => "get", remote: true, id: "search-form", class: "navbar-form") do %>
     <div class="input-group add-on">
-      <%= text_field_tag :search, params[:search], placeholder: "Search for posts..", class: "form-control" %>
+      <%= text_field_tag :search, params[:search], placeholder: t(:search_placeholder, scope: :post), class: "form-control" %>
       <div class="input-group-btn">
         <%= button_tag(type: "submit", class: "btn btn-default") do %>
           <i class="glyphicon glyphicon-search"></i>
@@ -13,12 +13,12 @@
     </div>
   <% end %>
 
-  <h1>Новостная лента</h1>
+  <h1><%= t(:blog_name, scope: :post) %></h1>
 
   <% if current_user.present? && (can? :create, Post) %>
-      <p><%= link_to "Новая статья", new_post_path, remote: true, class: "btn btn-primary" %></p>
+      <p><%= link_to t(:new_post, scope: :post), new_post_path, remote: true, class: "btn btn-primary" %></p>
   <% end %>
-  
+  <div class="alert-placeholder"><%= alert %></div>
   <div id="posts-list">
     <%= render partial: "posts" %>
   </div>
