@@ -3,9 +3,11 @@ module PostsHelper
     if flash.any?
       html = flash.map do |k, v|
         unless [:danger, :success].include?(k)
-          k = 'info'
+          alert_type = 'info'
+        else
+          alert_type = k
         end
-        content_tag(:div, class: "alert alert-#{k} alert-dismissable") do
+        content_tag(:div, class: "alert alert-#{alert_type} alert-dismissable") do
           concat content_tag(:a, '&times;'.html_safe, :class => 'close',
             'href' => '#', 'data-dismiss' => 'alert', 'aria-label' => 'close')
           concat v

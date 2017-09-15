@@ -34,7 +34,8 @@
                 remote: true,
                 method: :delete,
                 data: {confirm: t(:warning_question_del, scope: :post)},
-                class: "btn btn-link delete-post" %>
+                class: "btn btn-link",
+                id: "btn-delete-post" %>
             </span>
           <% end %>
         </ul>

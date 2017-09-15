@@ -25,13 +25,6 @@ class AttachmentsController < ApplicationController
 
   def destroy
     @attachment = Attachment.find(params[:id])
-    if @attachment.destroy
-      respond_to do |format|
-        format.js { render 'destroy', locals: {attachment: @attachment} }
-      end
-      flash[:success] = 'destroy_attachment_success'
-    else
-      flash[:danger] = 'destroy_attachment_error'
-    end
+    @attachment.destroy
   end
 end

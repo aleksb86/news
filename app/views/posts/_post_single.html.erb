@@ -29,7 +29,10 @@
         <span>
           <i class="glyphicon glyphicon-trash"></i>
           <%= link_to t(:delete, scope: :post), @post, remote: true,
-            method: :delete, data: {confirm: t(:warning_question_del, scope: :post)}, class: "btn btn-link delete-post" %>
+            method: :delete,
+            data: {confirm: t(:warning_question_del, scope: :post)},
+            class: "btn btn-link",
+            id: "btn-delete-post" %>
         </span>
       <% end %>
     </ul>

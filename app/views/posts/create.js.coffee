@@ -7,4 +7,4 @@ else
     <%= escape_javascript(render 'post_preview') %> \
     </div>")
 
-$(".alert-placeholder").html("<%= escape_javascript(alert) %>").show()
+$(".alert-placeholder").html("<%= escape_javascript(alert) %>")

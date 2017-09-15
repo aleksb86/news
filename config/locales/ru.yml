@@ -21,7 +21,7 @@ ru:
     warning_question_del: "Вы уверены, что хотите удалить изображение?"
   alert:
     post_created_succeeded: "Статья создана"
-    post_deleted_succeeded: "Статья удалена"
+    post_updated_succeeded: "Статья успешно обновлена"
 
   activerecord:
     errors:
