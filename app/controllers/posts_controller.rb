@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_filter :authenticate_user!, except: [:index, :show]
+  PER_PAGE = 3
 
   def index
     if params[:search]
@@ -8,8 +9,7 @@ class PostsController < ApplicationController
         format.js { render "results" }
       end
     else
-      @posts = Post.order_by(created_at: :desc)
-        .paginate(page: params[:page], per_page: per_page)
+      @posts = Post.order_by(created_at: :desc).paginate(page: params[:page], per_page: per_page)
     end
   end
 

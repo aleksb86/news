@@ -11,3 +11,8 @@ $ ->
   $(document)
     .on "ajax:success", "#post-form", (response, status, xhr) ->
       close()
+
+  $('*[data-remote="true"]').on 'click', (event) ->
+    event.preventDefault()
+    # $(this).closest('.media-body').remove()
+    console.log('click')
