@@ -13,9 +13,7 @@
       </div>
     </div>
   <% end %>
-
   <h1><%= t(:blog_name, scope: :post) %></h1>
-
   <% if current_user.present? && (can? :create, Post) %>
       <p><%= link_to t(:new_post, scope: :post), new_post_path, remote: true, class: "btn btn-primary" %></p>
   <% end %>

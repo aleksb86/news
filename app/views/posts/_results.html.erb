@@ -1,8 +1,6 @@
   <div class="modal-dialog">
     <div class="modal-content">
-
       <% if @posts.any? %>
-
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">
             <span aria-hidden="true">×</span>
@@ -11,9 +9,7 @@
         </div>
         <div class="modal-body">
           <div class="row">
-
             <% @posts.each do |post| %>
-
           	<div>
             	<div class="panel panel-default">
                 <div class="panel-heading">
@@ -24,18 +20,14 @@
                 </div>
               </div>
           	</div>
-
             <% end %>
-
           </div>
           <div class="modal-footer">
             <%= t(:found_count, scope: :post) %>
             <%= @posts.count %>
           </div>
         </div>
-
       <% else %>
-
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">
             <span aria-hidden="true">×</span>
@@ -54,8 +46,6 @@
             </div>
           </div>
         </div>
-
       <% end %>
-
   </div>
 </div>

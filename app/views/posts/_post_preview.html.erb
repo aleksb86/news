@@ -11,7 +11,6 @@
       </p>
     <div class="media-body">
       <h4 class="media-heading"><%= link_to @post.title, @post, remote: true %></h4>
-        <p class="text-right"><%= @post.id %></p>
         <p><%= sanitize @post.content[0..300] %>...</p>
         <ul class="list-inline list-unstyled">
           <% if current_user.present? && (can? :update, Post) %>

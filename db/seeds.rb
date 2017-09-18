@@ -5,5 +5,5 @@ guest = Role.create! name: 'Guest', description: 'Unregistered user - can view a
 puts 'Roles created: ' << admin.name, writer.name, guest.name
 puts 'Create default admin and moder:'
 admin.users.create! name: 'Admin', email: 'alex.is.awesome@gmail.com', password: 'qwerty', password_confirmation: 'qwerty'
-writer.users.create! name: 'Moder', email: 'moder@gmail.com', password: 'qwerty', password_confirmation: 'qwerty'
+writer.users.create! name: 'Moder', email: 'moder24@gmail.com', password: 'qwerty', password_confirmation: 'qwerty'
 puts 'Users created: ' << User.find_by(name: "Admin").name, User.find_by(name: "Moder").name

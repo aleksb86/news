@@ -9,7 +9,7 @@ class PostsController < ApplicationController
         format.js { render "results" }
       end
     else
-      @posts = Post.order_by(created_at: :desc).paginate(page: params[:page], per_page: per_page)
+      @posts = Post.order_by(created_at: :desc).paginate(page: params[:page], per_page: PER_PAGE)
     end
   end
 
@@ -19,12 +19,10 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(posts_params)
-    if @post.save
-      @post.add_attachments(params[:post][:attachments])
-
+    if @post.save || @post.add_attachments(params[:post][:attachments])
       flash.now[:success] = I18n.t(:post_created_succeeded, scope: :alert)
       respond_to do |format|
-        format.js { render 'create', locals: {post: @post} }
+        format.js { render 'create' }
       end
     else
       flash.now[:danger] = @post.errors.full_messages
@@ -48,7 +46,7 @@ class PostsController < ApplicationController
       @post.add_attachments(params[:post][:attachments])
       flash.now[:success] = I18n.t(:post_updated_succeeded, scope: :alert)
       respond_to do |format|
-        format.js { render 'update', locals: {post: @post} }
+        format.js { render 'update'}
       end
     else
       flash.now[:danger] = @post.errors.full_messages
@@ -69,7 +67,4 @@ class PostsController < ApplicationController
     params.require(:post).permit(:title, :content).merge(user_id: current_user.id)
   end
 
-  def per_page
-    3
-  end
 end

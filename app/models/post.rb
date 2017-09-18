@@ -18,9 +18,7 @@ class Post
     unless attachments.nil?
       self.attachments += attachments.map do |photo|
         attachment = Attachment.new(photo: photo, post_id: self.id)
-        unless attachment.persisted?
-          attachment.save!
-        end
+        attachment.save!
         attachment
       end
     end
