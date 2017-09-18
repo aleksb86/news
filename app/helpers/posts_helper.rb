@@ -2,7 +2,11 @@ module PostsHelper
   def alert
     html = flash.map do |k, v|
       unless [:danger, :success].include?(k)
-        alert_type = 'info'
+        if k == :error
+          alert_type = 'danger'
+        else
+          alert_type = 'info'
+        end
       else
         alert_type = k
       end

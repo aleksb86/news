@@ -1,5 +1,5 @@
 <h2><%= t('devise.auth.sign_in') %></h2>
-
+<div class="alert-placeholder"><%= alert %></div>
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
   <div><%= f.label t('devise.auth.email') %><br />
   <%= f.email_field :email %></div>

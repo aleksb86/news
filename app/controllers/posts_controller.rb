@@ -19,7 +19,8 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(posts_params)
-    if @post.save || @post.add_attachments(params[:post][:attachments])
+    if @post.save
+      @post.add_attachments(params[:post][:attachments])
       flash.now[:success] = I18n.t(:post_created_succeeded, scope: :alert)
       respond_to do |format|
         format.js { render 'create' }

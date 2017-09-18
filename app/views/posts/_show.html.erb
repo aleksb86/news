@@ -1,5 +1,5 @@
 
-<%= link_to "<- К списку статей", request.referer.present? ? request.referer : default_path %>
+<%= link_to "<- К списку статей", :back %>
 <div id="show-single-post">
   <%= render 'post_single' %>
 </div>
