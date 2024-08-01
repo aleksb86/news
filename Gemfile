@@ -8,7 +8,7 @@ end
 gem 'jquery-rails'
 gem "mongoid", '= 3.1.7'
 gem "devise", "= 2.2.8"
-gem 'bootstrap-sass', '~> 3.2.0'
+gem 'bootstrap-sass', '~> 3.4.1'
 gem 'autoprefixer-rails'
 gem 'bson_ext'
 gem 'carrierwave', '~> 0.11.2'
